@@ -1,34 +1,43 @@
-
----
-
-# 📊 GitHub Tracker
+````markdown
+# 📊 GitHub Tracker (Bulk Students)
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
-![PDF](https://img.shields.io/badge/Output-PDF-red)
+![Excel](https://img.shields.io/badge/Output-Excel-green)
 
-**GitHub Tracker** is a Python tool that interacts with the GitHub API to fetch repository data and generate **detailed PDF reports** on issues, pull requests, and activity metrics. It helps developers and teams **track repository statistics** efficiently.
+**GitHub Tracker** is a Python tool that fetches **GitHub user and repository data** for multiple students from an **Excel input file** and generates a **comprehensive Excel report** with activity metrics, stars, forks, and ranking. It is ideal for educators, mentors, or team leads who want to **track student contributions in bulk** efficiently.
 
 ---
 
 ## 🚀 Features
 
-* Fetch repository data using the **GitHub API**
-* Generate **PDF reports** for:
+* Read multiple student records from an **Excel sheet**
+* Fetch GitHub user data via the **GitHub API**
+* Generate a **detailed Excel report** with columns:
 
-  * Issues (open/closed, assigned, labels)
-  * Pull Requests (status, merge info)
-  * Commit activity
-* Requires a **GitHub API token** for authentication
-* Command-line interface for quick use
+  * Rank
+  * Student Name
+  * College Email
+  * GitHub Username
+  * Followers
+  * Public Repositories
+  * Total Stars
+  * Total Forks
+  * Last Activity Date
+  * Status (Success / Invalid Username)
+
+* Automatically **rank students** based on GitHub stars
+* Gracefully handles missing or invalid usernames
+* Includes **bulk processing** of many students at once
+* Minimal setup; only requires **Python 3.10+** and `requests`, `openpyxl`
 
 ---
 
 ## 🖼 Sample Report
 
-![Sample PDF](https://via.placeholder.com/600x400?text=Sample+PDF+Report)
+![Sample Excel](https://via.placeholder.com/600x400?text=Sample+Excel+Report)
 
-> Replace the placeholder with an actual screenshot of your PDF report.
+> Replace with a screenshot of your generated Excel report.
 
 ---
 
@@ -39,7 +48,7 @@
 ```bash
 git clone https://github.com/Sathvika-g-29/Github_Tracker.git
 cd Github_Tracker
-```
+````
 
 2. Install dependencies:
 
@@ -47,14 +56,20 @@ cd Github_Tracker
 pip install -r requirements.txt
 ```
 
-> Make sure you have **Python 3.10** or higher installed.
+> Ensure you have **Python 3.10+** installed.
 
 ---
 
 ## 🔑 Setup
 
-1. Generate a **GitHub personal access token** from [GitHub Developer Settings](https://github.com/settings/tokens).
-2. Store your token securely; you’ll need it to fetch repository data.
+1. Create an **input Excel file** named `students_input.xlsx` with headers:
+
+| Student Name | College Email | GitHub Username |
+| ------------ | ------------- | --------------- |
+
+2. Fill student data **starting from row 2**.
+3. Ensure the file is **saved and closed** before running the script.
+4. Optionally, store a **GitHub personal access token** as an environment variable `GITHUB_TOKEN` for higher API rate limits.
 
 ---
 
@@ -63,12 +78,30 @@ pip install -r requirements.txt
 Run the main script:
 
 ```bash
-python main.py
+python student_tracker.py
 ```
 
-* Provide the **repository name** (e.g., `username/repo`) when prompted.
-* Enter your **GitHub API token**.
-* The generated **PDF report** will be saved in the project directory.
+* The script will:
+
+  1. Read all student GitHub usernames from the Excel file
+  2. Fetch profile data and repository stats from GitHub
+  3. Rank students based on total stars
+  4. Generate `students_report.xlsx` with all metrics
+
+> ⚠️ Make sure the input Excel file is **not open** in another program to avoid `PermissionError`.
+
+---
+
+## 🧪 Testing with Bulk Student Data
+
+To quickly test the script, you can **generate fake student entries** in Excel with placeholder GitHub usernames like:
+
+| Student Name   | College Email                                 | GitHub Username |
+| -------------- | --------------------------------------------- | --------------- |
+| Test Student 1 | [test1@college.edu](mailto:test1@college.edu) | octocat         |
+| Test Student 2 | [test2@college.edu](mailto:test2@college.edu) | torvalds        |
+
+> Replace with real GitHub usernames for actual reports.
 
 ---
 
@@ -78,6 +111,7 @@ Contributions are welcome! You can help by:
 
 * Reporting bugs or issues
 * Suggesting new features
+* Adding support for additional GitHub metrics
 * Improving code readability or performance
 
 **Workflow:** Fork the repo → Create a feature branch → Make changes → Open a Pull Request
@@ -85,7 +119,7 @@ Contributions are welcome! You can help by:
 **Please ensure:**
 
 * Code is **PEP8 compliant**
-* Include comments for new features
+* Add comments for new features
 * Test functionality thoroughly
 
 ---
@@ -100,4 +134,6 @@ Contributions are welcome! You can help by:
 
 This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
 
----
+```
+Do you want me to add that?
+```
